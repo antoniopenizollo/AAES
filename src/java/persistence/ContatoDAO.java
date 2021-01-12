@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Contato;
 
 /**
  *
@@ -19,19 +20,20 @@ import java.util.logging.Logger;
  */
 public class ContatoDAO {
     private static ContatoDAO instance = new ContatoDAO();
+    
     private ContatoDAO(){}
     public static ContatoDAO getInstance(){
         return instance;
     }
     
-    public void save(String nome, String email) throws ClassNotFoundException, SQLException{
+    public void save(Contato contato) throws ClassNotFoundException, SQLException{
             Connection conn = null;
             Statement st = null;
             try{
                 conn = DatabaseLocator.getInstance().getConnection();
                 st = conn.createStatement();
                 st.execute("insert into contato (nome,email)" +
-                        " values ('"+ nome + "','" + email + "');");
+                        " values ('"+ contato.getNome() + "','" + contato.getEmail() + "');");
             } catch (SQLException e){
                 throw e;
             } finally {

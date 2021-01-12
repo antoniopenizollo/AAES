@@ -22,11 +22,12 @@ public class DatabaseLocator {
     
     //Padrão Singleton
     private static DatabaseLocator instance = new DatabaseLocator();
+    
     public static DatabaseLocator getInstance(){
         return instance;
     }
     private DatabaseLocator(){}
-    //End Padrão
+    //Fim Padrãodd
     
     public Connection getConnection() throws ClassNotFoundException{
         Connection con= null;
