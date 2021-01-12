@@ -1,3 +1,4 @@
+<%@page import="persistence.ContatoDAO"%>
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
@@ -11,7 +12,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 --%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
@@ -22,20 +23,23 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
         <h1>JSP Page</h1>
         <%
-        
-        Class.forName("org.postgresql.Driver");
-        Connection conn =
-                DriverManager.getConnection("jdbc:postgresql://localhost:5432/designpatterndb", "postgres", "admin");
-        Statement st = conn.createStatement();
-        String nome = request.getParameter("textNome");
-        String email = request.getParameter("textEmail");
-        
-        if(nome.equals("") || email.equals("")) {
+            String nome = request.getParameter("textNome");
+            String email = request.getParameter("textEmail");
         %>
-           <p>Nome e email sao dados obrigatorios...</p>
-        <% 
-        } else {
-            try {
+
+        <%
+           /* Class.forName("org.postgresql.Driver");
+            Connection conn =
+                DriverManager.getConnection("jdbc:postgresql://localhost:5432/designpatterndb", "postgres", "admin");
+        Statement st = conn.createStatement();*/
+
+            if (nome.equals("") || email.equals("")) {
+        %>
+        <p>Nome e email sao dados obrigatorios...</p>
+        <%
+            } else {
+                ContatoDAO.getInstance().save(nome, email);
+                /*try {
                 st.execute("insert into contato (nome, email)" +
                         " values ('" + nome + "', '" + email + "')");
             } catch(SQLException e) {
@@ -47,24 +51,20 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                     
                 } catch(SQLException e) {
                     
-                }
+                }*/
             }
         %>
-           <p>Contato gravado com sucesso!</p>
-        <%  
-        
-        }
-        %>
+        <p>Contato gravado com sucesso!</p>
         <%--
     This example uses JSTL, uncomment the taglib directive above.
     To test, display the page like this: index.jsp?sayHello=true&name=Murphy
-    --%>
+        --%>
         <%--
     <c:if test="${param.sayHello}">
         <!-- Let's welcome the user ${param.name} -->
         Hello ${param.name}!
     </c:if>
-    --%>
-    
+        --%>
+
     </body>
 </html>
