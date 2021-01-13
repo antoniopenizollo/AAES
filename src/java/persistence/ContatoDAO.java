@@ -19,6 +19,7 @@ import model.Contato;
  * @author anton
  */
 public class ContatoDAO {
+    
     private static ContatoDAO instance = new ContatoDAO();
     
     private ContatoDAO(){}
