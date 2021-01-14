@@ -27,6 +27,20 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
       <input type="text" name="textEmail"/><br/>
       <input type="submit"/>
     </form>
+    
+    <h1>Buscar dados do usuário por e-mail</h1>
+    <form action="FrontController?action=LerContato" method="post">
+      Entre com seu email
+      <input type="text" name="textEmail"/><br/>
+      <input type="submit"/>
+    </form>
+    
+    <h1>Deletar usuário pela chave primária</h1>
+    <form action="FrontController?action=ApagarContato" method="post">
+      Entre com seu email
+      <input type="text" name="textEmail"/><br/>
+      <input type="submit"/>
+    </form>
     <%--
     This example uses JSTL, uncomment the taglib directive above.
     To test, display the page like this: index.jsp?sayHello=true&name=Murphy

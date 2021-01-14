@@ -42,6 +42,36 @@ public class ContatoDAO {
             }
     }
     
+    public void delete(String email) throws ClassNotFoundException, SQLException{
+            Connection conn = null;
+            Statement st = null;
+            try{
+                conn = DatabaseLocator.getInstance().getConnection();
+                st = conn.createStatement();
+                st.execute("delete from contato where"
+                        + " email = '"+ email + "'");
+            } catch (SQLException e){
+                throw e;
+            } finally {
+                closeResources(conn,st);
+            }
+    }
+    
+    public void search(String email) throws ClassNotFoundException, SQLException{
+            Connection conn = null;
+            Statement st = null;
+            try{
+                conn = DatabaseLocator.getInstance().getConnection();
+                st = conn.createStatement();
+                st.execute("select * from contato"
+                        + " where email = '" + email +"'");
+            } catch (SQLException e){
+                throw e;
+            } finally {
+                closeResources(conn,st);
+            }
+    }
+    
     public void closeResources(Connection conn, Statement st){
         try {
             if(st!=null) st.close();
