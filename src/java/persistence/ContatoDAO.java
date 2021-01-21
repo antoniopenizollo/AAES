@@ -45,33 +45,37 @@ public class ContatoDAO {
     public void delete(String email) throws ClassNotFoundException, SQLException{
             Connection conn = null;
             Statement st = null;
+            PreparedStatement stmt = null;
+            String sql = "delete from contato where email = ? ";
             try{
-                conn = DatabaseLocator.getInstance().getConnection();
-                st = conn.createStatement();
-                st.execute("delete from contato where"
-                        + " email = '"+ email + "'");
+                stmt = DatabaseLocator.getInstance().getConnection().prepareStatement(sql);
+                stmt.setString(1, email);
+                stmt.executeUpdate();
             } catch (SQLException e){
                 throw e;
             } finally {
                 closeResources(conn,st);
             }
     }
-    
-    public void search(String email) throws ClassNotFoundException, SQLException{
-            Connection conn = null;
-            Statement st = null;
-            try{
-                conn = DatabaseLocator.getInstance().getConnection();
-                st = conn.createStatement();
-                st.execute("select * from contato"
-                        + " where email = '" + email +"'");
-            } catch (SQLException e){
-                throw e;
-            } finally {
-                closeResources(conn,st);
-            }
+
+    public Contato search(String email) throws ClassNotFoundException, SQLException {
+        Contato contato = null;
+        PreparedStatement stmt = null;
+        String sql = "select * from contato where email = ? ";
+        stmt = DatabaseLocator.getInstance().getConnection().prepareStatement(sql);
+        stmt.setString(1, "email");
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            contato = new Contato();
+            contato.setNome(rs.getString("nome"));
+            contato.setEmail(rs.getString("email"));
+        }
+        
+        rs.close();
+        stmt.close();
+        return contato;
     }
-    
+
     public void closeResources(Connection conn, Statement st){
         try {
             if(st!=null) st.close();

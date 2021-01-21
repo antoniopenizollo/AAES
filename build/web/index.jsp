@@ -10,7 +10,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 --%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
@@ -18,39 +18,9 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
         <title>JSP Page</title>
     </head>
     <body>
-
-    <h1>Cadastro de Contatos</h1>
-    <form action="FrontController?action=GravarContato" method="post">
-      Entre com seu nome
-      <input type="text" name="textNome"/><br/>
-      Entre com seu email
-      <input type="text" name="textEmail"/><br/>
-      <input type="submit"/>
-    </form>
-    
-    <h1>Buscar dados do usuário por e-mail</h1>
-    <form action="FrontController?action=LerContato" method="post">
-      Entre com seu email
-      <input type="text" name="textEmail"/><br/>
-      <input type="submit"/>
-    </form>
-    
-    <h1>Deletar usuário pela chave primária</h1>
-    <form action="FrontController?action=ApagarContato" method="post">
-      Entre com seu email
-      <input type="text" name="textEmail"/><br/>
-      <input type="submit"/>
-    </form>
-    <%--
-    This example uses JSTL, uncomment the taglib directive above.
-    To test, display the page like this: index.jsp?sayHello=true&name=Murphy
-    --%>
-    <%--
-    <c:if test="${param.sayHello}">
-        <!-- Let's welcome the user ${param.name} -->
-        Hello ${param.name}!
-    </c:if>
-    --%>
-    
+        <h1>Menu de funcionalidade</h1>
+        <a href="cadastraContato.jsp"><button>Cadastra contato</button></a>
+        <a href="buscaContato.jsp"><button>Busca contato</button></a>
+        <a href="deleteContato.jsp"><button>Deleta contato</button></a>
     </body>
 </html>
