@@ -18,9 +18,14 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Menu de funcionalidade</h1>
+        <h1>Menu de funcionalidade Cadastro Contato</h1>
         <a href="cadastraContato.jsp"><button>Cadastra contato</button></a>
         <a href="buscaContato.jsp"><button>Busca contato</button></a>
         <a href="deleteContato.jsp"><button>Deleta contato</button></a>
+        
+        <h1>Menu de funcionalidade Cadastro Empresa</h1>
+        <a href="cadastraEmpresa.jsp"><button>Cadastra empresa</button></a>
+        <a href="buscaEmpresa.jsp"><button>Busca empresa</button></a>
+        <a href="deleteEmpresa.jsp"><button>Deleta empresa</button></a>
     </body>
 </html>
